@@ -10,12 +10,13 @@ namespace Biblioteca.Controllers
     public class EmprestimoController : Controller
     {
         public IActionResult Cadastro()
-        {
+        {            
+            Autenticacao.CheckLogin(this);
             LivroService livroService = new LivroService();
             EmprestimoService emprestimoService = new EmprestimoService();
 
             CadEmprestimoViewModel cadModel = new CadEmprestimoViewModel();
-            cadModel.Livros = livroService.ListarTodos();
+            cadModel.Livros = livroService.ListarDisponiveis();
             return View(cadModel);
         }
 
@@ -35,8 +36,20 @@ namespace Biblioteca.Controllers
             return RedirectToAction("Listagem");
         }
 
+        public IActionResult Listagem(int p=1)
+        {
+            Autenticacao.CheckLogin(this);
+            int qtPg = 10;            
+            EmprestimoService emprestimoService = new EmprestimoService();              
+            // int qtReg = emprestimoService.ContaEmprestimos();
+            // ViewData["Paginas"] = (int)Math.Ceiling((double)qtReg/qtPg);
+            return View(emprestimoService.MaxEmprestimosPg(p, qtPg));
+        }
+        
+        [HttpPost]
         public IActionResult Listagem(string tipoFiltro, string filtro)
         {
+            Autenticacao.CheckLogin(this);
             FiltrosEmprestimos objFiltro = null;
             if(!string.IsNullOrEmpty(filtro))
             {
@@ -44,12 +57,15 @@ namespace Biblioteca.Controllers
                 objFiltro.Filtro = filtro;
                 objFiltro.TipoFiltro = tipoFiltro;
             }
-            EmprestimoService emprestimoService = new EmprestimoService();
+         
+            EmprestimoService emprestimoService = new EmprestimoService();          
             return View(emprestimoService.ListarTodos(objFiltro));
         }
 
+
         public IActionResult Edicao(int id)
         {
+            Autenticacao.CheckLogin(this);
             LivroService livroService = new LivroService();
             EmprestimoService em = new EmprestimoService();
             Emprestimo e = em.ObterPorId(id);

@@ -28,6 +28,17 @@ namespace Biblioteca.Controllers
             return RedirectToAction("Listagem");
         }
 
+        public IActionResult Listagem(int p=1)
+        {
+            Autenticacao.CheckLogin(this);
+            int qtPg = 10;
+            LivroService livroService = new LivroService();        
+            // int qtReg = livroService.ContaLivros();           
+            // ViewData["Paginas"] = (int)Math.Ceiling((double)qtReg/qtPg);
+            return View(livroService.MaxLivrosPg(p, qtPg));
+        }
+
+        [HttpPost]
         public IActionResult Listagem(string tipoFiltro, string filtro)
         {
             Autenticacao.CheckLogin(this);
@@ -36,8 +47,9 @@ namespace Biblioteca.Controllers
             {
                 objFiltro = new FiltrosLivros();
                 objFiltro.Filtro = filtro;
-                objFiltro.TipoFiltro = tipoFiltro;
+                objFiltro.TipoFiltro = tipoFiltro;                
             }
+
             LivroService livroService = new LivroService();
             return View(livroService.ListarTodos(objFiltro));
         }

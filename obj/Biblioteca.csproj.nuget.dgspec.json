@@ -1,29 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 01\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj": {}
+    "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 02\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj": {}
   },
   "projects": {
-    "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 01\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj": {
+    "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 02\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 01\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj",
+        "projectUniqueName": "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 02\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 01\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj",
+        "projectPath": "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 02\\Biblioteca - netcore3.1\\Biblioteca\\Biblioteca.csproj",
         "packagesPath": "C:\\Users\\Vanessa Campos\\.nuget\\packages\\",
-        "outputPath": "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 01\\Biblioteca - netcore3.1\\Biblioteca\\obj\\",
+        "outputPath": "I:\\Meu Drive\\Senac-EAD\\TII\\MB.UC07 - Documentar e realizar manutenção de aplicações web\\atividade 02\\Biblioteca - netcore3.1\\Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vanessa Campos\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Vanessa Campos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -35,8 +38,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.0.0, )"
             },
@@ -63,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

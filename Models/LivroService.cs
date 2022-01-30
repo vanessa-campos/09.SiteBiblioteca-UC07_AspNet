@@ -22,6 +22,7 @@ namespace Biblioteca.Models
                 Livro livro = bc.Livros.Find(l.Id);
                 livro.Autor = l.Autor;
                 livro.Titulo = l.Titulo;
+                livro.Ano = l.Ano;
 
                 bc.SaveChanges();
             }
@@ -82,5 +83,22 @@ namespace Biblioteca.Models
                 return bc.Livros.Find(id);
             }
         }
+
+        public ICollection<Livro> MaxLivrosPg(int page, int size){
+            
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                int pular = (page-1)*size;
+                IQueryable<Livro> query = bc.Livros.OrderBy(l => l.Titulo);
+
+                return query.Skip(pular).Take(size).ToList();
+            }
+        }
+
+        // public int ContaLivros(){
+        //     using(BibliotecaContext bc = new BibliotecaContext()){
+        //         return bc.Livros.Count();
+        //     }
+        // }
     }
 }

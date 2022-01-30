@@ -4,44 +4,59 @@
 }
 <div class="row">
     <div class="col-md-12">
-    <form class="form-inline" method="POST">
-        <div class="form-group mb-2">
-            <select name="TipoFiltro" class="form-control">
-                <option value="Autor">Autor</option>
-                <option value="Titulo">Título</option>
-            </select>
-        </div>
-        <div class="form-group mb-2 mx-sm-3">
-            <input type="text" placeholder="Filtro" name="Filtro" class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
-    </form>
+        <form class="form-inline" method="POST">
+            <div class="form-group mb-2">
+                <select name="TipoFiltro" class="form-control">
+                    <option value="Autor">Autor</option>
+                    <option value="Titulo">Título</option>
+                </select>
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <input type="text" placeholder="Filtro" name="Filtro" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+        </form>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-striped"> 
+        <table class="table table-striped">
             <thead>
-                <tr><th>Id</th>
-                <th>Titulo</th>
-                <th>Autor</th>
-                <th>Ano</th>
-                <th></th>
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Ano</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach(Livro l in Model)
+            
+            @if(Model.Count > 0){
+            <tbody>                
+                @foreach (Livro l in Model)
                 {
-                <tr>
-                    <td>@l.Id</td>
-                    <td>@l.Titulo</td>
-                    <td>@l.Autor</td>
-                    <td>@l.Ano</td>
-                    <td><a href="/Livro/Edicao/@l.Id">Editar</a></td>
-                </tr>
+                    <tr>
+                        <td>@l.Id</td>
+                        <td>@l.Titulo</td>
+                        <td>@l.Autor</td>
+                        <td>@l.Ano</td>
+                        <td><a href="/Livro/Edicao/@l.Id">Editar</a></td>
+                    </tr>
                 }
             </tbody>
+            }else{    
+            <p>Nenhum registro encontrado!</p>
+       }  
         </table>
     </div>
+</div>
+
+<div class="row">
+    <ul class="pagination justify-content-center col-md-12" style="margin:20px 0">
+        <li class="page-item" id="prevPage" onclick="plusPage(-1)"><a class="page-link">Previous</a></li>
+        <li class="page-item" onclick="currentPage(1)"><a class="page-link" href="/Livro/Listagem/?p=1">1</a></li>
+        <li class="page-item" onclick="currentPage(2)"><a class="page-link" href="/Livro/Listagem/?p=2">2</a></li>
+        <li class="page-item" onclick="currentPage(3)"><a class="page-link" href="/Livro/Listagem/?p=3">3</a></li>
+        <li class="page-item" id="nextPage" onclick="plusPage(1)"><a class="page-link">Next</a></li>
+    </ul>
 </div>
