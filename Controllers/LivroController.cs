@@ -1,4 +1,6 @@
+using System;
 using Biblioteca.Models;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Biblioteca.Controllers
@@ -32,10 +34,11 @@ namespace Biblioteca.Controllers
         {
             Autenticacao.CheckLogin(this);
             int qtPg = 10;
-            LivroService livroService = new LivroService();        
-            // int qtReg = livroService.ContaLivros();           
-            // ViewData["Paginas"] = (int)Math.Ceiling((double)qtReg/qtPg);
-            return View(livroService.MaxLivrosPg(p, qtPg));
+            LivroService livroService = new LivroService();                    
+            ICollection<Livro> list = livroService.MaxLivrosPg(p, qtPg);
+            int qtReg = livroService.CountItems();
+            ViewData["Pages"] = (int)Math.Ceiling((double)qtReg/qtPg);
+            return View(list);
         }
 
         [HttpPost]

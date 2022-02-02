@@ -1,7 +1,6 @@
 using Biblioteca.Models;
-using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using System;
 
 namespace Biblioteca.Controllers
@@ -36,14 +35,15 @@ namespace Biblioteca.Controllers
             return RedirectToAction("Listagem");
         }
 
-        public IActionResult Listagem(int p=1)
+        public IActionResult Listagem(int p = 1)
         {
             Autenticacao.CheckLogin(this);
             int qtPg = 10;            
-            EmprestimoService emprestimoService = new EmprestimoService();              
-            // int qtReg = emprestimoService.ContaEmprestimos();
-            // ViewData["Paginas"] = (int)Math.Ceiling((double)qtReg/qtPg);
-            return View(emprestimoService.MaxEmprestimosPg(p, qtPg));
+            EmprestimoService emprestimoService = new EmprestimoService();  
+            ICollection<Emprestimo> list = emprestimoService.MaxEmprestimosPg(p, qtPg);
+            int qtReg = emprestimoService.CountItems();
+            ViewData["Pages"] = (int)Math.Ceiling((double)qtReg/qtPg);
+            return View(list);
         }
         
         [HttpPost]

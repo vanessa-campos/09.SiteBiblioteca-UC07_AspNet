@@ -96,10 +96,12 @@ namespace Biblioteca.Models
             }
         }
 
-        // public int ContaEmprestimos(){
-        //     using(BibliotecaContext bc = new BibliotecaContext()){
-        //         return bc.Emprestimos.Count();
-        //     }
-        // }
+        public int CountItems(){
+            using(BibliotecaContext bc = new BibliotecaContext()){
+                return bc.Emprestimos.Count();
+            }
+        }
+        
+        
     }
 }

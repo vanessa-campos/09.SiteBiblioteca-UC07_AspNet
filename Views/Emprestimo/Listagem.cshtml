@@ -31,36 +31,46 @@
                     <th>Data Devolução</th>
                     <th>Livro</th>
                     <th>Autor</th>
+                    <th></th>
                 </tr>
             </thead>
             @if(Model.Count > 0){
             <tbody>
-                @foreach (Emprestimo e in Model)
-                {
-                    <tr>
-                        <td>@e.Id</td>
-                        <td>@e.NomeUsuario</td>
-                        <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
-                        <td>@e.DataDevolucao.ToString("dd/MM/yyyy")</td>
-                        <td>@e.Livro.Titulo</td>
-                        <td>@e.Livro.Autor</td>
-                        <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td>
+                @foreach (Emprestimo e in Model){
+                    if(e.DataDevolucao < DateTime.Today){
+                        <tr>
+                            <td><p class="text-danger" style="font-weight: bold;">@e.Id</p></td>
+                            <td><p class="text-danger" style="font-weight: bold;">@e.NomeUsuario</p></td>
+                            <td><p class="text-danger" style="font-weight: bold;">@e.DataEmprestimo.ToString("dd/MM/yyyy")</p></td>
+                            <td><p class="text-danger" style="font-weight: bold;">@e.DataDevolucao.ToString("dd/MM/yyyy")</p></td>
+                            <td><p class="text-danger" style="font-weight: bold;">@e.Livro.Titulo</p></td>
+                            <td><p class="text-danger" style="font-weight: bold;">@e.Livro.Autor</p></td>
+                            <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td>
                     </tr>
+                    }else{
+                        <tr>
+                            <td>@e.Id</td>
+                            <td>@e.NomeUsuario</td>
+                            <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
+                            <td>@e.DataDevolucao.ToString("dd/MM/yyyy")</td>
+                            <td>@e.Livro.Titulo</td>
+                            <td>@e.Livro.Autor</td>
+                            <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td>
+                        </tr>
+                    }                   
                 }
             </tbody>            
             }else{    
-            <p>Nenhum registro encontrado!</p>
-       } 
+                <p>Nenhum registro encontrado!</p>
+            } 
         </table>
     </div>
 </div>
 
 <div class="row">
     <ul class="pagination justify-content-center col-md-12" style="margin:20px 0">
-        <li class="page-item" id="prevPage" onclick="plusPage(-1)"><a class="page-link">Previous</a></li>
-        <li class="page-item" onclick="currentPage(1)"><a class="page-link" href="/Emprestimo/Listagem/?p=1">1</a></li>
-        <li class="page-item" onclick="currentPage(2)"><a class="page-link" href="/Emprestimo/Listagem/?p=2">2</a></li>
-        <li class="page-item" onclick="currentPage(3)"><a class="page-link" href="/Emprestimo/Listagem/?p=3">3</a></li>
-        <li class="page-item" id="nextPage" onclick="plusPage(1)"><a class="page-link">Next</a></li>
+        @for (int i = 1; i <= (int)ViewData["Pages"]; i++){
+            <li class="page-item"><a class="page-link" href="/Emprestimo/Listagem/?p=@i">@i</a></li>
+        }
     </ul>
 </div>

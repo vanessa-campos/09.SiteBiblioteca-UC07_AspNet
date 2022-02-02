@@ -1,0 +1,61 @@
+@model ICollection<Usuario>
+@{
+    ViewData["Title"] = "Listagem de Usuários";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-inline" method="POST">
+            <div class="form-group mb-2">
+                <select name="TipoFiltro" class="form-control">
+                    <option value="Login">Login</option>
+                    <option value="Nome">Nome</option>
+                    <option value="Email">E-mail</option>
+                </select>
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <input type="text" placeholder="Filtro" name="Filtro" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Tipo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Usuario u in Model)
+                {
+                    <tr>
+                        <td>@u.Nome</td>
+                        <td>@u.Login</td>                        
+                        @if(u.Tipo == Usuario.ADMIN){
+                            <td>Administrador</td>
+                        }else{
+                            <td>Padrão</td>
+                        }
+                        <td><a href="/Usuario/Edicao/@u.Id">Editar</a>|<a href="/Usuario/Excluir/@u.Id">Excluir</a></td>
+                    </tr>
+                }
+            </tbody>   
+        </table>
+    </div>
+</div>
+
+
+<div class="row">
+    <ul class="pagination justify-content-center col-md-12" style="margin:20px 0">
+        @for (int i = 1; i <= (int)ViewData["Pages"]; i++){
+            <li class="page-item"><a class="page-link" href="/Usuario/Listagem/?p=@i">@i</a></li>
+        }
+    </ul>
+</div>

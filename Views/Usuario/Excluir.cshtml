@@ -1,0 +1,16 @@
+@model Usuario
+@{
+    ViewData["Title"] = "Listagem de Usuários";
+}
+
+<h1 class="row justify-content-md-center">Exclusão de Usuário</h1>
+<p>Esta ação excluirá definitivamente o usuário <strong>@Model.Login</strong> e a operação não poderá ser desfeita.</p>
+<p>Deseja mesmo excluir?</p>
+
+<form action="Excluir" method="POST">
+
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" name="escolha" class="btn btn-primary mb-2" value="n">Não</button>
+    <button type="submit" name="escolha" class="btn btn-primary mb-2" value="s">Sim</button>
+
+</form>

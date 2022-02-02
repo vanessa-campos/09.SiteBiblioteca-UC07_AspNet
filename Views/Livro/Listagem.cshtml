@@ -28,6 +28,7 @@
                     <th>Titulo</th>
                     <th>Autor</th>
                     <th>Ano</th>
+                    <th></th>
                 </tr>
             </thead>
             
@@ -53,10 +54,8 @@
 
 <div class="row">
     <ul class="pagination justify-content-center col-md-12" style="margin:20px 0">
-        <li class="page-item" id="prevPage" onclick="plusPage(-1)"><a class="page-link">Previous</a></li>
-        <li class="page-item" onclick="currentPage(1)"><a class="page-link" href="/Livro/Listagem/?p=1">1</a></li>
-        <li class="page-item" onclick="currentPage(2)"><a class="page-link" href="/Livro/Listagem/?p=2">2</a></li>
-        <li class="page-item" onclick="currentPage(3)"><a class="page-link" href="/Livro/Listagem/?p=3">3</a></li>
-        <li class="page-item" id="nextPage" onclick="plusPage(1)"><a class="page-link">Next</a></li>
+        @for (int i = 1; i <= (int)ViewData["Pages"]; i++){
+            <li class="page-item"><a class="page-link" href="/Livro/Listagem/?p=@i">@i</a></li>
+        }
     </ul>
 </div>
